@@ -1,0 +1,135 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "<EDITAR CON EL NOMBRE DE INVOCACIÓN DE TU SKILL>",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "cancelar",
+                        "cancela"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "necesito más información",
+                        "necesito ayuda",
+                        "ayúdame por favor",
+                        "ayuda por favor",
+                        "me ayudas",
+                        "help me",
+                        "help",
+                        "qué es eso",
+                        "qué hago",
+                        "cómo funciona",
+                        "ayúdame",
+                        "ayuda"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "terminar",
+                        "finalizar",
+                        "acabar",
+                        "salte",
+                        "sal",
+                        "finaliza",
+                        "termina",
+                        "para",
+                        "salir",
+                        "parar"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "cambiarEstadoIntent",
+                    "slots": [
+                        {
+                            "name": "estado",
+                            "type": "estadoLavaplatos"
+                        }
+                    ],
+                    "samples": [
+                        "guarda {estado}",
+                        "ponlo en {estado}",
+                        "está {estado}",
+                        "{estado}",
+                        "el lavaplatos está {estado}",
+                        "poner en estado {estado}",
+                        "poner en {estado}",
+                        "poner {estado}",
+                        "cambiar el estado a {estado}",
+                        "cambiar a {estado}"
+                    ]
+                },
+                {
+                    "name": "estadoActualIntent",
+                    "slots": [
+                        {
+                            "name": "estado",
+                            "type": "estadoLavaplatos"
+                        }
+                    ],
+                    "samples": [
+                        "cómo está el lavaplatos",
+                        "cómo está",
+                        "cuál es el estado actual",
+                        "cuál es el estado",
+                        "estado acual",
+                        "estado",
+                        "dime el estado del lavaplatos",
+                        "dime la situación del lavaplatos",
+                        "dime si el lavaplatos está {estado}",
+                        "dime cómo está el lavaplatos"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "estadoLavaplatos",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "sucio",
+                                "synonyms": [
+                                    "ensusiada",
+                                    "ensusiado",
+                                    "susia",
+                                    "susio",
+                                    "ensuciada",
+                                    "ensuciado",
+                                    "cochino",
+                                    "sin poner",
+                                    "pendiente",
+                                    "asquerosa",
+                                    "asqueroso",
+                                    "guarra",
+                                    "sucia",
+                                    "guarro"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "limpio",
+                                "synonyms": [
+                                    "relusiente",
+                                    "brillante",
+                                    "reluciente",
+                                    "limpita",
+                                    "limpito",
+                                    "limpia"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

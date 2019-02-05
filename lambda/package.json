@@ -1,0 +1,19 @@
+{
+  "name": "El lavaplatos",
+  "version": "2.0.0",
+  "description": "Skill que te dice si el lavaplatos está limpio o sucio.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lavaplatos",
+    "sucio",
+    "limpio"
+  ],
+  "author": "Javier Campos",
+  "license": "MIT",
+  "dependencies": {
+    "ask-sdk": "^2.0.0"
+  }
+}
