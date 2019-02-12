@@ -1,11 +1,10 @@
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
 
-const dynamoDBTableName = "<NOMBRE_DE_TU_TABLA_DYNAMODB>";
-
 /* 1. Cargamos las dependencias. */
 const Alexa = require('ask-sdk');
-const dbHelper = require('./helpers/dbHelper');
+const DBHelper = require('./helpers/dbHelper');
+let myDb = new DBHelper("<AQUÍ NOMBRE DE TU TABLA DYNAMODB>", "userId", null);
 
 /* 2. Constantes */
 const skillBuilder = Alexa.SkillBuilders.standard();
@@ -25,14 +24,17 @@ const LaunchRequestHandler = {
   async handle(handlerInput) {
     const {responseBuilder } = handlerInput;
     const userID = handlerInput.requestEnvelope.context.System.user.userId; 
-    return dbHelper.getItems(userID)
+    
+    return myDb.getItem(userID)
       .then((data) => {
         var speechText = "";
-        if (data.length == 0) {
+        if(!data){
           speechText = "Aun no sé si tu lavaplatos está limpio o sucio. Dime 'limpio' o 'sucio' y lo recordaré. Dime por ejemplo: el lavaplatos está sucio. También puedes decir 'salir' o 'ayuda'.";
-        } else {
-          var opuesto = (data[0].status == "limpio") ? "sucio" : "limpio";
-          speechText = "El lavaplatos está " + data[0].status + ". Si quieres que guarde '" + opuesto + "', dímelo o dime salir.";
+        }
+        else {
+          let limpioArray = ["relusiente", "brillante", "reluciente", "limpita", "limpito", "limpia"];
+          var opuesto = (limpioArray.includes(data.status)) ? "sucio" : "limpio";
+          speechText = "El lavaplatos está " + data.status + ". Si quieres que guarde '" + opuesto + "', dímelo o dime salir.";
         }
         return responseBuilder
           .speak(speechText)
@@ -68,13 +70,14 @@ const RespuestaHandler = {
       const slots = handlerInput.requestEnvelope.request.intent.slots;
       const nuevoEstadoLavaplatos = slots.estado.value;
       
-      return dbHelper.deleteItem(userID)
+      return myDb.deleteItem(userID)
       .then((data) => {
-        return dbHelper.addItem(nuevoEstadoLavaplatos, userID)
+        return myDb.addItem(userID, {"status": nuevoEstadoLavaplatos})
             .then((data) => {
               const speechText = `¡Guardado! El lavaplatos ahora está ` + nuevoEstadoLavaplatos + ". ¡Hasta luego!";
               return responseBuilder
                 .speak(speechText)
+                .withShouldEndSession(true)
                 .getResponse();
             })
             .catch((err) => {
@@ -82,6 +85,7 @@ const RespuestaHandler = {
               const speechText = "Error guardando. Vuelve a intentarlo." + err;
               return responseBuilder
                 .speak(speechText)
+                .withShouldEndSession(true)
                 .getResponse();
             });
         
@@ -91,6 +95,7 @@ const RespuestaHandler = {
         const speechText = "Error borrando el estado anterior. Vuelve a intentarlo." + err;
         return responseBuilder
           .speak(speechText)
+          .withShouldEndSession(true)
           .getResponse();
       });
     }
