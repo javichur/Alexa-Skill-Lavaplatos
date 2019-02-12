@@ -41,6 +41,26 @@ Para reutilizar esta skill, recuerda hacer estos cambios:
 El helper para DynamoDB se ha escrito a partir de:
 - https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.NodeJs.03.html
 - https://www.youtube.com/watch?v=wXLFFBB8PQ4
+- En los commits siguientes se ha reescrito y refactorizado para hacerlo reutilizable a cualquier proyecto.
+
+## Cómo usar dbHelper:
+No hace falta editar el fichero dbHelper.js. Simplemente, desde el código de tu aplicación node escribe algo así:
+```
+const DBHelper = require('./helpers/dbHelper');
+let myDb = new DBHelper("nombre-tabla-en-dynamodb", "nombre-primary-key-en-dynamodb", null);
+
+myDb.getItem(userID).then((data) => {
+    if(!data){
+        // item no existe
+    }
+    else {
+        // item devuelto OK
+    }
+})
+.catch((err) => {
+    // error al acceder a dynamodb
+});
+```
 
 ## Otras consideraciones
 1. Al configurar tu función Lambda en AWS, recuerda habilitar que solo pueda ser invocada por el APPLICATION_ID de tu Skill. Esde ID lo obtendrás en https://developer.amazon.com/alexa/console/ask
