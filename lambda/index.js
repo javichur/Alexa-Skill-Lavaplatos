@@ -2,12 +2,12 @@
 /* eslint-disable  no-console */
 
 /* 1. Cargamos las dependencias. */
-const Alexa = require('ask-sdk');
+const Alexa = require('ask-sdk-core');
 const DBHelper = require('./helpers/dbHelper');
 let myDb = new DBHelper("<AQUÍ NOMBRE DE TU TABLA DYNAMODB>", "userId", null);
 
 /* 2. Constantes */
-const skillBuilder = Alexa.SkillBuilders.standard();
+const skillBuilder = Alexa.SkillBuilders.custom();
 const HELP_MESSAGE = 'Esta skill recuerda el estado actual de tu lavaplatos: limpio o sucio. Utilízala para no tener que abrir tu lavaplatos para comprobarlo. Cada vez que enciendas o recojas tu electrodoméstico, puedes guardar el nuevo estado (limpio o sucio) en la skill. Para guardar un nuevo estado simplemente di "limpio" o "sucio". Para salir di "salir".';
 const HELP_REPROMPT = HELP_MESSAGE;
 const STOP_MESSAGE = '<say-as interpret-as="interjection">Hasta luego</say-as>';

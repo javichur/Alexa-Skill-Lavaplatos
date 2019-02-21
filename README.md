@@ -65,3 +65,4 @@ myDb.getItem(userID).then((data) => {
 ## Otras consideraciones
 1. Al configurar tu función Lambda en AWS, recuerda habilitar que solo pueda ser invocada por el APPLICATION_ID de tu Skill. Esde ID lo obtendrás en https://developer.amazon.com/alexa/console/ask
 2. Los datos que se están almacenando no son críticos (se guarda solo la cadena de texto "limpio"/"sucio" de cada usuario), por eso para identificar al usuario se utiliza el UserId que genera automáticamente Amazon cuando cada usuario instala tu Skill. Pero es importante entender que dicho UserId cambiará si un usuario borra tu Skill y la vuelve a instalar. Por tanto, **si almacenas información crítica o si quieres que los datos perduren incluso después de que un usuario borre y reinstale tu skill, entonces tendrás que utilizar otro sistema de autenticación más seguro**.
+3. Para generar obtener los módulos node necesarios, ejecuta "npm install" en la carpeta ./lambda.
