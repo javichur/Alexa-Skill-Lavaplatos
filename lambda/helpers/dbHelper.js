@@ -1,6 +1,6 @@
 /* dbHelper.js
  * Author: Javier Campos (https://javiercampos.es)
- * Version: 2.0 (12/02/2019)
+* Version: 2.3 (20/02/2019)
  */
 var AWS = require("aws-sdk");
 
@@ -117,7 +117,7 @@ class DBHelper {
                 var name = Object.keys(itemAttributesToChange)[i];
 
                 strUpdateExpression += " " + name + " = :" + name + "_value";
-                params.ExpressionAttributeValues[name + "_value"] = itemAttributesToChange[name];
+                params.ExpressionAttributeValues[":" + name + "_value"] = itemAttributesToChange[name];
             }
 
             params.UpdateExpression = strUpdateExpression;
