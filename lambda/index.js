@@ -3,8 +3,8 @@
 
 /* 1. Cargamos las dependencias. */
 const Alexa = require('ask-sdk-core');
-const DBHelper = require('./helpers/dbHelper');
-let myDb = new DBHelper("<AQUÍ NOMBRE DE TU TABLA DYNAMODB>", "userId", null);
+const dynamola = require('dynamola');
+let myDb = new dynamola("<AQUÍ NOMBRE DE TU TABLA DYNAMODB>", "userId", null);
 
 /* 2. Constantes */
 const skillBuilder = Alexa.SkillBuilders.custom();

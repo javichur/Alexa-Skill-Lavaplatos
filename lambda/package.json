@@ -1,5 +1,5 @@
 {
-  "name": "El lavaplatos",
+  "name": "lavaplatos-estado",
   "version": "2.1.0",
   "description": "Skill que te dice si el lavaplatos está limpio o sucio.",
   "main": "index.js",
@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "ask-sdk-core": "^2.0.0",
-    "ask-sdk-model": "^1.0.0"
+    "ask-sdk-model": "^1.0.0",
+    "dynamola": "^1.0.0"
   }
 }
